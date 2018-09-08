@@ -1,34 +1,52 @@
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Jugador {
 
+    @Id
+    @Column
     private String nombre;
-    private List<String> resultados;
+
+    @Column
     private Integer partidosJugados;
+
+    private List<String> resultados = new ArrayList<>();
+
+    public Integer getPartidosJugados() {
+        return partidosJugados;
+    }
+
+    public void agregarResultado(String resultado){
+        resultados.add(resultado);
+    }
+
+    public List<String> getResultados(){
+        return resultados;
+    }
+
+    public void setPartidosJugados(Integer partidosJugados) {
+        this.partidosJugados = partidosJugados;
+    }
 
     Jugador(String nombre, Integer partidosJugados) {
         this.nombre = nombre;
         this.partidosJugados = partidosJugados;
-        resultados = new ArrayList<>();
     }
 
     public void incrementarPartidos() {
         this.partidosJugados++;
     }
 
-    public void agregarResultado(String resultado) {
-        resultados.add(resultado);
-    }
-
     public String getNombre() {
         return nombre;
     }
 
-    public List<String> getResultados() {
-        return resultados;
-    }
 
     @Override
     public boolean equals(Object o) {
